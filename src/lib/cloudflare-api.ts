@@ -225,22 +225,30 @@ export async function ensureEmailRoutingRuleToWorker(
 	const normalized = address.toLowerCase();
 	const workerName = getEmailWorkerName();
 	const rules = await listEmailRoutingRules(env, zoneId);
-	const existing = rules.find((rule) => isWorkerRouteForAddress(rule, normalized, workerName));
+	const existingWorkerRule = rules.find((rule) => isWorkerRouteForAddress(rule, normalized, workerName));
 
-	if (existing?.enabled) return existing;
-	if (existing?.id) {
-		changes?.push({ zoneId, ruleId: existing.id, previous: existing });
+	if (existingWorkerRule?.enabled) return existingWorkerRule;
+
+	const existingAddressRule = rules.find((rule) =>
+		rule.matchers?.some(
+			(matcher) => matcher.type === "literal" && matcher.field === "to" && matcher.value?.toLowerCase() === normalized,
+		),
+	);
+	const targetRule = existingWorkerRule ?? existingAddressRule;
+
+	if (targetRule?.id) {
+		changes?.push({ zoneId, ruleId: targetRule.id, previous: targetRule });
 		return cfRequest<CfEmailRoutingRule>(
 			env,
-			`/zones/${zoneId}/email/routing/rules/${existing.id}`,
+			`/zones/${zoneId}/email/routing/rules/${targetRule.id}`,
 			{
 				method: "PUT",
 				body: JSON.stringify({
 					actions: [{ type: "worker", value: [workerName] }],
 					enabled: true,
 					matchers: [{ type: "literal", field: "to", value: normalized }],
-					name: existing.name ?? `Route ${normalized} to ${workerName}`,
-					priority: existing.priority,
+					name: targetRule.name ?? `Route ${normalized} to ${workerName}`,
+					priority: targetRule.priority,
 				}),
 			},
 		);
