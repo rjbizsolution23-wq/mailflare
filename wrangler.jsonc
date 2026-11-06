@@ -37,6 +37,8 @@
 			],
 		},
 	],
+	"workers_dev": true,
+	
 	"triggers": {
 		"crons": ["0 2 * * *", "*/5 * * * *"],
 	},
