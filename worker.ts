@@ -30,12 +30,31 @@ import { runAccountRetention } from "./src/lib/accounts/deletion";
 import { runJmapChangeRetention } from "./src/lib/jmap/changes";
 import { runFollowUpReminders } from "./src/lib/follow-ups/service";
 import { runCalendarReminders } from "./src/lib/calendar/reminders";
+import { SALES_PAGE_HTML } from "./src/lib/sales-page-html";
 export { RealtimeHub } from "./src/lib/realtime/hub";
 
 export default {
 	async fetch(request: Request, rawEnv: CloudflareEnv, ctx: ExecutionContext) {
 		const env = withDatabase(withStorage(rawEnv));
 		const url = new URL(request.url);
+
+		if (
+			url.pathname === "/sales" ||
+			url.pathname === "/sales/" ||
+			url.pathname === "/sales.html" ||
+			url.pathname === "/pricing" ||
+			url.pathname === "/pricing/" ||
+			url.pathname === "/enterprise" ||
+			url.pathname === "/enterprise/"
+		) {
+			return new Response(SALES_PAGE_HTML, {
+				headers: {
+					"Content-Type": "text/html; charset=utf-8",
+					"Cache-Control": "public, max-age=300",
+				},
+			});
+		}
+
 		if (url.pathname === "/api/realtime") {
 			if (request.headers.get("Upgrade")?.toLowerCase() !== "websocket") {
 				return new Response("Expected WebSocket upgrade", { status: 426 });

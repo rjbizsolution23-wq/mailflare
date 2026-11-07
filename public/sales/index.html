@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RJ Enterprise Private Mail | $99/Mo Unlimited Everything</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --rj-blue: #2563eb;
+      --rj-sky: #0ea5e9;
+      --rj-deep: #1e3a8a;
+      --rj-navy: #0f172a;
+      --rj-white: #ffffff;
+      --rj-soft: #f8fafc;
+      --rj-light: #eff6ff;
+      --rj-border: #bfdbfe;
+      --rj-line: #e2e8f0;
+      --rj-text: #0f172a;
+      --rj-muted: #475569;
+      --rj-subtle: #94a3b8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: var(--rj-soft);
+      color: var(--rj-text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, h4, .brand-font {
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    /* Nav */
+    header {
+      background: var(--rj-white);
+      border-bottom: 1px solid var(--rj-line);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .nav-inner {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo-badge {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+    .logo-badge img {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 1px solid var(--rj-border);
+    }
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+    .logo-text span:first-child {
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--rj-navy);
+      letter-spacing: -0.02em;
+    }
+    .logo-text span:last-child {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--rj-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #2563eb 0%, #0ea5e9 100%);
+      color: var(--rj-white);
+      border: none;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+    }
+    .btn-primary:hover {
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
+      transform: translateY(-1px);
+    }
+    .btn-secondary {
+      background: var(--rj-white);
+      color: var(--rj-navy);
+      border: 1px solid var(--rj-line);
+    }
+    .btn-secondary:hover {
+      border-color: var(--rj-blue);
+      color: var(--rj-blue);
+    }
+    /* Hero */
+    .hero {
+      padding: 80px 0 60px;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+      border-bottom: 1px solid var(--rj-line);
+      text-align: center;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--rj-light);
+      color: var(--rj-blue);
+      border: 1px solid var(--rj-border);
+      padding: 6px 16px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(36px, 5.5vw, 64px);
+      line-height: 1.1;
+      color: var(--rj-navy);
+      margin-bottom: 24px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero h1 span {
+      background: linear-gradient(135deg, #2563eb 0%, #0ea5e9 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-sub {
+      font-size: 20px;
+      color: var(--rj-muted);
+      max-width: 760px;
+      margin: 0 auto 36px;
+      line-height: 1.5;
+    }
+    .hero-btns {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+    .hero-badges {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      font-size: 14px;
+      color: var(--rj-muted);
+      flex-wrap: wrap;
+    }
+    .hero-badge-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .hero-badge-item svg {
+      color: #10b981;
+    }
+    /* Calculator Card */
+    .calc-section {
+      padding: 60px 0;
+    }
+    .calc-card {
+      background: var(--rj-white);
+      border-radius: 24px;
+      border: 1px solid var(--rj-border);
+      padding: 48px;
+      box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.07);
+    }
+    .calc-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 48px;
+      align-items: center;
+    }
+    @media (max-width: 860px) {
+      .calc-grid { grid-template-columns: 1fr; }
+    }
+    .calc-slider {
+      width: 100%;
+      height: 10px;
+      border-radius: 5px;
+      background: var(--rj-line);
+      outline: none;
+      margin: 24px 0 16px;
+      accent-color: var(--rj-blue);
+    }
+    .savings-box {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 60%, #2563eb 100%);
+      color: var(--rj-white);
+      padding: 36px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 15px 30px rgba(30, 58, 138, 0.25);
+    }
+    .savings-label {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #93c5fd;
+      margin-bottom: 8px;
+    }
+    .savings-amount {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 52px;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .savings-sub {
+      font-size: 14px;
+      color: #bfdbfe;
+    }
+    /* Comparison Table */
+    .compare-section {
+      padding: 80px 0;
+      background: #ffffff;
+      border-top: 1px solid var(--rj-line);
+      border-bottom: 1px solid var(--rj-line);
+    }
+    .section-head {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .section-head h2 {
+      font-size: 38px;
+      color: var(--rj-navy);
+      margin-bottom: 12px;
+    }
+    .section-head p {
+      font-size: 18px;
+      color: var(--rj-muted);
+      max-width: 650px;
+      margin: 0 auto;
+    }
+    .table-card {
+      background: var(--rj-white);
+      border-radius: 20px;
+      border: 1px solid var(--rj-line);
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    th, td {
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--rj-line);
+      font-size: 15px;
+    }
+    th {
+      background: #f8fafc;
+      font-weight: 700;
+      color: var(--rj-navy);
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    th.highlight, td.highlight {
+      background: #eff6ff;
+      border-left: 2px solid var(--rj-blue);
+      border-right: 2px solid var(--rj-blue);
+      font-weight: 600;
+      color: var(--rj-navy);
+    }
+    th.highlight {
+      color: var(--rj-blue);
+      font-size: 17px;
+    }
+    /* Features Grid */
+    .features-section {
+      padding: 90px 0;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 28px;
+    }
+    .feature-card {
+      background: var(--rj-white);
+      border: 1px solid var(--rj-line);
+      border-radius: 20px;
+      padding: 32px;
+      transition: all 0.2s ease;
+    }
+    .feature-card:hover {
+      border-color: var(--rj-border);
+      box-shadow: 0 12px 24px -10px rgba(37, 99, 235, 0.12);
+      transform: translateY(-2px);
+    }
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--rj-light);
+      color: var(--rj-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .feature-card h3 {
+      font-size: 20px;
+      color: var(--rj-navy);
+      margin-bottom: 10px;
+    }
+    .feature-card p {
+      color: var(--rj-muted);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+    /* Pricing Section */
+    .pricing-section {
+      padding: 90px 0;
+      background: linear-gradient(180deg, #f8fafc 0%, #eff6ff 100%);
+      border-top: 1px solid var(--rj-line);
+    }
+    .pricing-card {
+      max-width: 580px;
+      margin: 0 auto;
+      background: var(--rj-white);
+      border-radius: 28px;
+      border: 2px solid var(--rj-blue);
+      padding: 50px;
+      text-align: center;
+      box-shadow: 0 25px 50px -12px rgba(37, 99, 235, 0.25);
+      position: relative;
+    }
+    .pricing-badge {
+      position: absolute;
+      top: -16px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #2563eb 0%, #0ea5e9 100%);
+      color: white;
+      padding: 6px 20px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .price-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 72px;
+      font-weight: 700;
+      color: var(--rj-navy);
+      line-height: 1;
+      margin: 20px 0 6px;
+    }
+    .price-num span {
+      font-size: 22px;
+      color: var(--rj-muted);
+      font-weight: 500;
+    }
+    .price-sub {
+      font-size: 16px;
+      color: var(--rj-muted);
+      margin-bottom: 32px;
+    }
+    .check-list {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 36px;
+    }
+    .check-list li {
+      padding: 10px 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+      color: var(--rj-navy);
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .check-list li:last-child {
+      border-bottom: none;
+    }
+    .check-list svg {
+      color: #10b981;
+      flex-shrink: 0;
+    }
+    /* Steps */
+    .steps-section {
+      padding: 80px 0;
+      background: var(--rj-white);
+      border-top: 1px solid var(--rj-line);
+    }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 900px) {
+      .steps-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .steps-grid { grid-template-columns: 1fr; }
+    }
+    .step-card {
+      background: var(--rj-soft);
+      border-radius: 16px;
+      padding: 28px;
+      border: 1px solid var(--rj-line);
+      position: relative;
+    }
+    .step-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--rj-blue);
+      margin-bottom: 12px;
+    }
+    .step-card h4 {
+      font-size: 17px;
+      color: var(--rj-navy);
+      margin-bottom: 8px;
+    }
+    .step-card p {
+      font-size: 14px;
+      color: var(--rj-muted);
+      line-height: 1.5;
+    }
+    /* Footer */
+    footer {
+      background: var(--rj-navy);
+      color: #94a3b8;
+      padding: 60px 0 40px;
+      border-top: 1px solid #1e293b;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 40px;
+    }
+    @media (max-width: 768px) {
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+    .footer-brand h4 {
+      color: #ffffff;
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+    .footer-brand p {
+      max-width: 380px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .footer-links h5 {
+      color: #ffffff;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+    }
+    .footer-links ul {
+      list-style: none;
+    }
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+    .footer-links a {
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover {
+      color: #ffffff;
+    }
+    .footer-bottom {
+      padding-top: 30px;
+      border-top: 1px solid #1e293b;
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <div class="container nav-inner">
+      <a href="https://mail.rjbusinesssolutions.org" class="logo-badge">
+        <img src="https://storage.googleapis.com/msgsndr/qQnxRHDtyx0uydPd5sRl/media/67eb83c5e519ed689430646b.jpeg" alt="RJ Business Solutions Logo">
+        <div class="logo-text">
+          <span>RJ Business Solutions</span>
+          <span>Enterprise Mail Infrastructure</span>
+        </div>
+      </a>
+      <div class="nav-cta">
+        <a href="https://mail.rjbusinesssolutions.org/login" class="btn btn-secondary">Sign In</a>
+        <a href="#pricing" class="btn btn-primary">Get Unlimited Mail ($99/mo)</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="pill">
+        🛡️ Sovereign Cloudflare-Native Architecture
+      </div>
+      <h1>Fire Google Workspace.<br>One Flat Price: <span>$99/Month for Everything.</span></h1>
+      <p class="hero-sub">
+        Stop paying a monthly seat tax every time you hire a staff member or add a support inbox. Get encrypted enterprise email, unlimited domains, unlimited mailboxes, and embedded AI triage for $99/mo flat.
+      </p>
+      <div class="hero-btns">
+        <a href="#pricing" class="btn btn-primary" style="padding: 16px 36px; font-size: 17px;">Deploy For Your Company &rarr;</a>
+        <a href="#comparison" class="btn btn-secondary" style="padding: 16px 32px; font-size: 17px;">See Workspace Comparison</a>
+      </div>
+      <div class="hero-badges">
+        <div class="hero-badge-item">
+          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+          <span>Unlimited Users & Team Seats</span>
+        </div>
+        <div class="hero-badge-item">
+          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+          <span>Unlimited Custom Domains</span>
+        </div>
+        <div class="hero-badge-item">
+          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+          <span>Native AI Email Assistant Included</span>
+        </div>
+        <div class="hero-badge-item">
+          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+          <span>100% SPF, DKIM & DMARC Inboxed</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive ROI Savings Calculator -->
+  <section class="calc-section">
+    <div class="container">
+      <div class="calc-card">
+        <div class="calc-grid">
+          <div>
+            <div class="pill" style="margin-bottom: 12px;">Live Cost Calculator</div>
+            <h2 style="font-size: 32px; color: var(--rj-navy); margin-bottom: 8px;">How much are you overpaying Google or Microsoft?</h2>
+            <p style="color: var(--rj-muted); font-size: 16px;">
+              Drag the slider to see what traditional providers charge your team every year versus RJ Enterprise Mail.
+            </p>
+            <input type="range" id="teamSlider" class="calc-slider" min="3" max="50" value="15" oninput="updateCalculator()">
+            <div style="display: flex; justify-content: space-between; font-weight: 600; font-size: 15px; color: var(--rj-navy);">
+              <span>Team Size: <strong id="teamSizeDisplay" style="color: var(--rj-blue); font-size: 18px;">15 Team Members</strong></span>
+              <span>Google Standard Rate: <strong>$14.40/user/mo</strong></span>
+            </div>
+          </div>
+          <div class="savings-box">
+            <div class="savings-label">Your Guaranteed Annual Savings</div>
+            <div class="savings-amount" id="savingsAnnualDisplay">$1,404</div>
+            <div class="savings-sub" id="savingsBreakdown">Google: $2,592/yr &bull; RJ Mail: $1,188/yr</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison Table -->
+  <section id="comparison" class="compare-section">
+    <div class="container">
+      <div class="section-head">
+        <h2>Built to Replace the Legacy Giants</h2>
+        <p>Compare Google Workspace Business Standard and Microsoft 365 against the sovereign RJ Enterprise infrastructure.</p>
+      </div>
+
+      <div class="table-card">
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 32%;">Feature / Capability</th>
+              <th>Google Workspace</th>
+              <th>Microsoft 365</th>
+              <th class="highlight">RJ Enterprise Mail</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Monthly Cost (15 Users)</strong></td>
+              <td style="color: #dc2626; font-weight: 600;">$216.00 / mo</td>
+              <td style="color: #dc2626; font-weight: 600;">$187.50 / mo</td>
+              <td class="highlight" style="color: #16a34a; font-size: 17px;">$99.00 / mo flat</td>
+            </tr>
+            <tr>
+              <td><strong>Team Accounts & Seats</strong></td>
+              <td>Per-user seat fee ($14.40/user)</td>
+              <td>Per-user seat fee ($12.50/user)</td>
+              <td class="highlight">Unlimited Team Members</td>
+            </tr>
+            <tr>
+              <td><strong>Custom Brand Domains</strong></td>
+              <td>Alias routing only</td>
+              <td>Complex tenant setup</td>
+              <td class="highlight">Unlimited Full Domains</td>
+            </tr>
+            <tr>
+              <td><strong>Mailboxes & Inboxes</strong></td>
+              <td>Charged per account</td>
+              <td>Shared inboxes need licenses</td>
+              <td class="highlight">Unlimited Inboxes & Aliases</td>
+            </tr>
+            <tr>
+              <td><strong>Built-in AI Assistant</strong></td>
+              <td>+$30.00/user/mo (Gemini add-on)</td>
+              <td>+$30.00/user/mo (Copilot add-on)</td>
+              <td class="highlight">Included Natively ($0 extra)</td>
+            </tr>
+            <tr>
+              <td><strong>Email Privacy & Sovereignty</strong></td>
+              <td>Scanned for advertising & telemetry</td>
+              <td>Stored on Microsoft enterprise servers</td>
+              <td class="highlight">Encrypted Edge D1 & R2 Storage</td>
+            </tr>
+            <tr>
+              <td><strong>Custom Subdomain Branding</strong></td>
+              <td>Limited</td>
+              <td>Requires Azure AD Premium</td>
+              <td class="highlight">Full White-Label Branding</td>
+            </tr>
+            <tr>
+              <td><strong>Deliverability Health & Setup</strong></td>
+              <td>Self-service DIY DNS</td>
+              <td>Complex PowerShell configuration</td>
+              <td class="highlight">Done-For-You 5-Min Alignment</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Grid -->
+  <section class="features-section">
+    <div class="container">
+      <div class="section-head">
+        <h2>Enterprise Power. Zero Overhead.</h2>
+        <p>Engineered for credit technology companies, fintech operators, legal practices, and high-velocity digital brands.</p>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+          </div>
+          <h3>Multi-Domain Omnibox</h3>
+          <p>Operate 10+ different companies, websites, or subsidiary brands from a single interface. Switch sender identity in 1 click with zero confusion.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+          </div>
+          <h3>Embedded AI Intelligence</h3>
+          <p>Powered by Cloudflare Workers AI. Instantly summarize 20-message client threads, auto-draft replies matching your voice, and extract urgent action items.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+          </div>
+          <h3>Bulletproof Deliverability</h3>
+          <p>Pre-configured with SPF, dual DKIM keys (2048-bit), strict DMARC, and automated bounce routing to ensure your emails always land in the primary inbox.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+          </div>
+          <h3>Collaborative Shared Inboxes</h3>
+          <p>Assign multiple team members to manage <code>support@</code>, <code>billing@</code>, or <code>disputes@</code> without sharing risky static passwords.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+          </div>
+          <h3>Massive Cloudflare R2 Drive</h3>
+          <p>Send and receive large contracts, audit files, and marketing media seamlessly. Files are stored on Cloudflare's zero-egress R2 object storage.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+          </div>
+          <h3>Passkey & WebAuthn Security</h3>
+          <p>Sign in with biometric TouchID, FaceID, or hardware YubiKeys. Zero passwords to intercept, phish, or credential-stuff.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4-Step Migration -->
+  <section class="steps-section">
+    <div class="container">
+      <div class="section-head">
+        <h2>Zero-Downtime Migration in 4 Simple Steps</h2>
+        <p>You never miss a single client email during setup. RJ Business Solutions handles the heavy lifting.</p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <h4>Subscribe Flat ($99/mo)</h4>
+          <p>Lock in your unlimited corporate subscription. Your monthly cost will never increase regardless of team size.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <h4>Point DNS Records</h4>
+          <p>Add 4 simple records to your domain registrar (GoDaddy, Namecheap, etc.) or let our engineers do it for you.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <h4>Invite Your Team</h4>
+          <p>Create inboxes for all staff and departments (`sales@`, `support@`, `legal@`) in under 2 minutes.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">04</div>
+          <h4>Send & Receive</h4>
+          <p>Log in at `mail.rjbusinesssolutions.org` or your custom domain and enjoy instant, AI-augmented email.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Card -->
+  <section id="pricing" class="pricing-section">
+    <div class="container">
+      <div class="section-head">
+        <h2>One Price. Zero Bullshit.</h2>
+        <p>No tiers. No per-user upgrades. No hidden storage surcharges. Everything is unlimited.</p>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-badge">The Sovereign Enterprise Plan</div>
+        <h3 style="font-size: 26px; color: var(--rj-navy); margin-top: 10px;">Unlimited Enterprise Everything</h3>
+        <div class="price-num">$99<span>/month</span></div>
+        <p class="price-sub">Flat monthly billing &bull; Cancel anytime &bull; No contracts</p>
+
+        <ul class="check-list">
+          <li>
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+            <strong>Unlimited Team Accounts & Seats</strong>
+          </li>
+          <li>
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+            <strong>Unlimited Custom Domains & Subsidiaries</strong>
+          </li>
+          <li>
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+            <strong>Unlimited Inboxes, Mailboxes & Aliases</strong>
+          </li>
+          <li>
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+            <strong>Built-In AI Email Assistant (Workers AI)</strong>
+          </li>
+          <li>
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+            <strong>100% SPF, DKIM & DMARC Deliverability Setup</strong>
+          </li>
+          <li>
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+            <strong>Collaborative Shared Team Inboxes</strong>
+          </li>
+          <li>
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+            <strong>Direct Cloudflare R2 Storage (Large Files)</strong>
+          </li>
+          <li>
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+            <strong>Direct Concierge White-Glove Onboarding</strong>
+          </li>
+        </ul>
+
+        <a href="mailto:support@rjbusinesssolutions.org?subject=I%20Want%20RJ%20Enterprise%20Mail%20(%2499%2Fmo)&body=Hello%20Rick%2C%0A%0AI%20want%20to%20get%20set%20up%20with%20RJ%20Enterprise%20Private%20Mail%20for%20%2499%2Fmonth.%0A%0ACompany%20Name%3A%0AMain%20Domain%3A%0ATeam%20Size%3A%0APhone%3A" class="btn btn-primary" style="width: 100%; padding: 18px; font-size: 18px;">Get Started for $99/Mo &rarr;</a>
+        
+        <p style="margin-top: 16px; font-size: 13px; color: var(--rj-muted);">
+          Questions or custom requirements? Call or text <a href="mailto:support@rjbusinesssolutions.org" style="color: var(--rj-blue); font-weight: 600;">support@rjbusinesssolutions.org</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h4>RJ Business Solutions</h4>
+          <p>
+            Enterprise software systems, automated email infrastructure, and credit technology for growth-focused operators.
+          </p>
+          <p style="margin-top: 14px; font-size: 12px; color: #64748b;">
+            1342 NM 333, Tijeras, New Mexico 87059<br>
+            Direct: support@rjbusinesssolutions.org
+          </p>
+        </div>
+        <div class="footer-links">
+          <h5>Quick Links</h5>
+          <ul>
+            <li><a href="https://mail.rjbusinesssolutions.org/login">Client Webmail</a></li>
+            <li><a href="https://rjbusinesssolutions.org">Main Website</a></li>
+            <li><a href="#comparison">Workspace Comparison</a></li>
+            <li><a href="#pricing">Pricing & Plans</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h5>Trust & Security</h5>
+          <ul>
+            <li><a href="#">Cloudflare Edge Network</a></li>
+            <li><a href="#">D1 Encrypted Database</a></li>
+            <li><a href="#">WebAuthn Passkey Standards</a></li>
+            <li><a href="#">DMARC / SPF Enforcement</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 RJ Business Solutions. All rights reserved. CEO: Rick Jefferson.</div>
+        <div>Software and automation infrastructure. Not financial or legal advice.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function updateCalculator() {
+      const teamSize = parseInt(document.getElementById('teamSlider').value, 10);
+      document.getElementById('teamSizeDisplay').textContent = teamSize + ' Team Members';
+
+      // Google Standard = $14.40 / user / mo
+      const googleAnnual = teamSize * 14.40 * 12;
+      const rjAnnual = 99 * 12; // $1,188
+      const savings = Math.max(0, Math.round(googleAnnual - rjAnnual));
+
+      document.getElementById('savingsAnnualDisplay').textContent = '$' + savings.toLocaleString();
+      document.getElementById('savingsBreakdown').textContent = 
+        'Google: $' + Math.round(googleAnnual).toLocaleString() + '/yr • RJ Mail: $1,188/yr';
+    }
+    updateCalculator();
+  </script>
+</body>
+</html>
