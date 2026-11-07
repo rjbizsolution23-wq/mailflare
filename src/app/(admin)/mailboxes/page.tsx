@@ -283,6 +283,15 @@ export default function MailboxesPage() {
 											<span className="block truncate text-sm font-semibold text-neutral-900">
 												{getMailboxName(mailboxWithHostname)}
 											</span>
+											{mailbox.agent?.autoDraftEnabled ? (
+												<span className="shrink-0 rounded-full bg-emerald-50 px-2 py-0.5 text-[11px] font-medium text-emerald-700 border border-emerald-200">
+													⚡ Auto-Draft
+												</span>
+											) : mailbox.agent?.enabled ? (
+												<span className="shrink-0 rounded-full bg-blue-50 px-2 py-0.5 text-[11px] font-medium text-blue-700 border border-blue-200">
+													🤖 AI Agent
+												</span>
+											) : null}
 										</span>
 										<span className="block truncate no-font-mono text-sm text-neutral-500">
 											{getMailboxAddress(mailboxWithHostname)}

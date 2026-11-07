@@ -10,6 +10,12 @@ export type Mailbox = {
 	isPrimary?: boolean;
 	status?: "active" | "disabled" | "pendingDeletion";
 	lastSignInAt?: string | null;
+	agent?: {
+		enabled: boolean;
+		autoDraftEnabled: boolean;
+		modelId: string | null;
+		dailyLimit: number;
+	} | null;
 };
 
 export type Domain = {

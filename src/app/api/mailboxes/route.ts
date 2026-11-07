@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { and, eq } from "drizzle-orm";
 import { getEnv } from "@/lib/cloudflare";
 import { getDb } from "@/db";
-import { domains, mailboxAliases, mailboxes, users } from "@/db/schema";
+import { domains, mailboxAgentSettings, mailboxAliases, mailboxes, users } from "@/db/schema";
 import { requireUser } from "@/lib/auth/cookies";
 import { newId } from "@/lib/ids";
 import { getLicenseEntitlements } from "@/lib/licenses/service";
@@ -17,14 +17,28 @@ export async function GET(request: Request) {
 	const db = getDb(env);
 	const rows = await ensurePersonalMailbox(env, db, user);
 	const entitlements = await getLicenseEntitlements(env);
+	const agentSettingsRows = await db.select().from(mailboxAgentSettings);
+	const agentSettingsMap = new Map(agentSettingsRows.map((s) => [s.mailboxId, s]));
+
 	return NextResponse.json({
-		mailboxes: await Promise.all(rows.map(async (mailbox) => ({
-			...mailbox,
-			...(mailbox.userId === user.id && tracksAccountIdentity(mailbox, user.email)
-				? { displayName: user.name, hasAvatar: !!user.avatarKey }
-				: {}),
-			senderAddresses: await getMailboxDomainAddresses(db, mailbox),
-		}))),
+		mailboxes: await Promise.all(rows.map(async (mailbox) => {
+			const s = agentSettingsMap.get(mailbox.id);
+			return {
+				...mailbox,
+				...(mailbox.userId === user.id && tracksAccountIdentity(mailbox, user.email)
+					? { displayName: user.name, hasAvatar: !!user.avatarKey }
+					: {}),
+				senderAddresses: await getMailboxDomainAddresses(db, mailbox),
+				agent: s
+					? {
+							enabled: Boolean(s.enabled && s.instructions?.trim()),
+							autoDraftEnabled: Boolean(s.autoDraftEnabled),
+							modelId: s.modelId ?? null,
+							dailyLimit: s.dailyLimit,
+					  }
+					: null,
+			};
+		})),
 		canCreateShared: user.role === "admin" && entitlements.canShareMailboxes,
 	});
 }

@@ -16,6 +16,7 @@ import { parseAgentModelIds, toggleAgentModelId } from "@/lib/agent/model-ids";
 import type { AgentModelOption, AgentProviderPreset } from "@/lib/agent/provider-types";
 import type { AgentAdminForm } from "./types";
 import { baseUrlForPreset, loadAgentAdminSettings, loadAgentModels, PROVIDER_PRESETS, saveAgentAdminSettings, saveAgentEnabled, updateAgentModelRate } from "./utils";
+import AgentSwarmDashboard from "./AgentSwarmDashboard";
 
 const initialForm: AgentAdminForm = { provider: "cloudflare", preset: "openai", baseUrl: "", apiKey: "", model: DEFAULT_CLOUDFLARE_MODEL, rates: {} };
 
@@ -91,8 +92,19 @@ export default function AdminAgentPage() {
 		} finally { setSaving(false); }
 	}
 
-	return <div className="space-y-6">
-		<div className="flex items-start justify-between gap-4"><div><h1 className="text-2xl md:text-3xl font-medium text-neutral-900">{t("agentAdmin.title")}</h1><p className="mt-2 text-sm text-neutral-500">{t("agentAdmin.description")}</p></div><Link href="/ai-usage" className="shrink-0 rounded-xl border border-neutral-200 bg-white px-4 py-2 text-sm font-medium text-neutral-800 hover:bg-neutral-50">{t("agentAdmin.viewUsage")}</Link></div>
+	return <div className="space-y-8">
+		<div className="flex items-start justify-between gap-4">
+			<div>
+				<h1 className="text-2xl md:text-3xl font-medium text-neutral-900">AI Agent Swarm & Engine Control</h1>
+				<p className="mt-2 text-sm text-neutral-500">Deploy custom autonomous AI agents to each mailbox, configure auto-drafting, and manage AI providers.</p>
+			</div>
+			<Link href="/ai-usage" className="shrink-0 rounded-xl border border-neutral-200 bg-white px-4 py-2 text-sm font-medium text-neutral-800 hover:bg-neutral-50">{t("agentAdmin.viewUsage")}</Link>
+		</div>
+
+		{/* Section 1: Per-Mailbox Agent Swarm Command Center */}
+		<AgentSwarmDashboard />
+
+		{/* Section 2: Global AI Provider & Availability Settings */}
 		<Card className="rounded-3xl border-0 bg-white p-6">
 			<CardContent className="flex items-center justify-between gap-4 p-0">
 				<div><p className="font-medium text-neutral-900">{t("agentAdmin.enable")}</p><p className="mt-1 text-sm text-neutral-500">{t("agentAdmin.enableHint")}</p></div>

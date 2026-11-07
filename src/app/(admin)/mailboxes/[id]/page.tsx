@@ -33,6 +33,7 @@ import {
 } from "./utils";
 import { getMailboxesBase } from "../utils";
 import MailboxAvatarForm from "./MailboxAvatarForm";
+import MailboxAgentConfigCard from "./MailboxAgentConfigCard";
 
 export default function MailboxSettingsPage() {
   const { t } = useLanguage();
@@ -207,6 +208,9 @@ export default function MailboxSettingsPage() {
           </Button>
         </CardContent>
       </Card>
+
+      {/* Autonomous AI Agent & Auto-Drafting Engine */}
+      <MailboxAgentConfigCard mailboxId={mailboxId} mailboxAddress={address} />
 
       <Card className="rounded-3xl border-0 bg-white p-6">
         <CardHeader className="py-0">
